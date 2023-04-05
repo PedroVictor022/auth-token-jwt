@@ -5,4 +5,5 @@ const userController = new UserController();
 
 export const route = Router();
 
-route.post("/create", userController.store)
+route.post("/create", userController.store);
+route.get("/users", userController.index);

@@ -3,6 +3,12 @@ import prisma from "../utils/prismaClient";
 import { hash } from "bcryptjs";
 
 class UserController {
+
+  async index(req: Request, res: Response) {
+    const users = await prisma.user.findMany();
+    return res.json(users);
+  }
+
   async store(req: Request, res: Response) {
     const { name, email, password } = req.body;
 
