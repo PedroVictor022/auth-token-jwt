@@ -21,8 +21,9 @@ class AuthController {
     // Pass the ID first
     // "secret" - e colocado em .env e uma chave secreta da aplicacao
     const authToken = sign({ id: user.id}, "secret", { expiresIn: "1d" })
+    const { id } = user;
 
-    return res.json({ user, authToken });
+    return res.json({ user: { id, email }, authToken });
   }
 }
 export default AuthController;
