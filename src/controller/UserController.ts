@@ -15,6 +15,11 @@ class UserController {
     // create a encrypted password
     const hash_password = await hash(password, 8);
 
+    const findUser = await prisma.user.findUnique({ where: { email }});
+    if(!findUser) {
+      return res.json({ error: "User already exists" });
+    }
+
     const user = await prisma.user.create({
       data: {
         name,
